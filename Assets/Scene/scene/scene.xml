@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scene>
+  <name>Scene 1</name>
+  <pattern>
+    <name>Pattern 1</name>
+    <run_at>500</run_at>
+  </pattern>
+</scene>

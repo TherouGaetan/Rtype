@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pattern>
+  <name>Pattern 1</name>
+  <mob>
+    <speed>-4</speed>
+    <pos>1600 200</pos>
+    <type>BasicMob</type>
+    <spawn_at>1</spawn_at>
+  </mob>
+  <obstacle>
+    <speed>-1</speed>
+    <pos>200 288.6</pos>
+    <spawn_at>2</spawn_at>
+  </obstacle>
+  <obstacle>
+    <speed>-6</speed>
+    <pos>400.5 400</pos>
+    <spawn_at>3</spawn_at>
+  </obstacle>
+  <obstacle>
+    <speed>-5</speed>
+    <pos>500.5 750</pos>
+    <spawn_at>3</spawn_at>
+  </obstacle>
+  <mob>
+    <speed>7</speed>
+    <pos>1900 540</pos>
+    <type>BasicMob</type>
+    <spawn_at>4</spawn_at>
+  </mob>
+  <powerup>
+    <speed>-5</speed>
+    <pos>1500 123</pos>
+    <type>speedup</type>
+    <spawn_at>6</spawn_at>
+  </powerup>
+  <powerup>
+    <speed>-5</speed>
+    <pos>1500 123</pos>
+    <type>shieldup</type>
+    <spawn_at>8</spawn_at>
+  </powerup>
+  <mob>
+    <speed>-0.1</speed>
+    <pos>1800 950</pos>
+    <type>BasicMob</type>
+    <spawn_at>8</spawn_at>
+  </mob>
+  <mob>
+    <speed>-2</speed>
+    <pos>1500 123</pos>
+    <type>BasicMob</type>
+    <spawn_at>8</spawn_at>
+  </mob>
+  <mob>
+    <speed>3</speed>
+    <pos>1650 900</pos>
+    <type>Boss1</type>
+    <spawn_at>15</spawn_at>
+  </mob>
+</pattern>
