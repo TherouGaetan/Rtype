@@ -4,4 +4,4 @@ before_install:
   - sudo apt-get update
 script:
   - cmake .
-  - make
+  - make && ./RtypeServer
