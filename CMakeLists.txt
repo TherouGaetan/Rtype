@@ -23,7 +23,9 @@ set(THREAD
         Sources/Thread/Mutex/UnixMutex.cpp
         Sources/Thread/Exception/ThreadException.cpp
         Sources/Thread/Exception/ThreadException.hpp
-        Sources/Thread/Thread/StdThread.cpp Sources/Thread/ThreadFactory.cpp Sources/Thread/ThreadFactory.hpp)
+        Sources/Thread/Thread/StdThread.cpp
+        Sources/Thread/ThreadFactory.cpp
+        Sources/Thread/ThreadFactory.hpp)
 
 set(SERVER
         Sources/Server/Server.cpp

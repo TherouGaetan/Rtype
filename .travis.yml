@@ -1,7 +1,9 @@
 language: cpp
 compiler: g++
+os: linux
 before_install:
   - sudo apt-get update
+  - sudo apt-get install libpthread-stubs0-dev
 script:
   - cmake .
   - make && ./RtypeServer
