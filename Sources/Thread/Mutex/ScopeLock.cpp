@@ -1,4 +1,4 @@
-#include "ScopeLock.h"
+#include "ScopeLock.hpp"
 
 namespace Thread {
     ScopeLock::ScopeLock(IMutex *mutex) :

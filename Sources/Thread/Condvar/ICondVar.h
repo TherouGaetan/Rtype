@@ -16,7 +16,7 @@ public:
  public:
     virtual void signal()  = 0;
     virtual void wait()  = 0;
-    virtual int timedwait(int time)  = 0;
+    virtual int timedwait(int time) throw() = 0;
 };
 
 } /* End of namespace Thread */

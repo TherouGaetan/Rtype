@@ -1,4 +1,4 @@
-#include "UnixMutex.h"
+#include "UnixMutex.hpp"
 
 namespace Thread {
 
@@ -28,7 +28,7 @@ namespace Thread {
     }
 
     pthread_mutex_t *UnixMutex::getMutex() const {
-        return &mMutex;
+        return const_cast<pthread_mutex_t *>(&mMutex);
     }
 
 }

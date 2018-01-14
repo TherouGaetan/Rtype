@@ -13,7 +13,7 @@ namespace Network {
 
         virtual ~NetworkException() throw() {}
 
-        virtual const char *what() const throw();
+        const char *what() const throw() override;
 
     private:
         std::string mMessage;

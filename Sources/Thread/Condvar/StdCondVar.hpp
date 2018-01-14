@@ -5,7 +5,7 @@
 #include <mutex>
 #include <chrono>
 #include "ICondVar.h"
-#include "../Mutex/StdMutex.h"
+#include "../Mutex/StdMutex.hpp"
 
 namespace Thread {
 
@@ -18,7 +18,7 @@ class StdCondVar: public ICondVar
 public:
     void signal() override;
     void wait() override;
-    int timedwait(int time) override;
+    int timedwait(int time) throw() override;
 
  public:
     StdMutex                *mMutex;

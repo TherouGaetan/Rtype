@@ -1,4 +1,4 @@
-#include "StdCondVar.h"
+#include "StdCondVar.hpp"
 
 namespace Thread {
     StdCondVar::StdCondVar(StdMutex *pMutex)
@@ -22,7 +22,7 @@ namespace Thread {
         mCondvar.wait(lck);
     }
 
-    int StdCondVar::timedwait(int time)
+    int StdCondVar::timedwait(int time) throw()
     {
         std::unique_lock<std::mutex> lck(*mMutex->getMutex());
         mCondvar.wait_for(lck, std::chrono::seconds(time));

@@ -1,30 +1,21 @@
-#include "UnixThread.h"
+#include <csignal>
+#include "UnixThread.hpp"
 
 namespace Thread {
 
-template <class T, class ...Args>
-UnixThread::UnixThread(T &func, Args &...params)
-{
-    pthread_create(&_thread, NULL, func, params);
-}
+    void UnixThread::join()
+    {
+        pthread_join(_thread, NULL);
+    }
 
-UnixThread::~UnixThread()
-{
-}
+    void UnixThread::kill()
+    {
+        pthread_kill(_thread, SIGINT);
+    }
 
-void UnixThread::join()
-{
-    pthread_join(_thread, NULL);
-}
+    int UnixThread::getIdThread() const
+    {
+        return 0;
+    }
 
-void UnixThread::kill()
-{
-    pthread_kill(_thread, SIGINT);
 }
-
-int UnixThread::getIdThread() const
-{
-    return 0;
-}
-
-} /* End of namespace Thread */
