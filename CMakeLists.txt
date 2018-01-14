@@ -31,4 +31,8 @@ set(SERVER
         Sources/Server/Server.cpp
         Sources/Server/Server.hpp)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 add_executable(RtypeServer ${SERVER} ${NETWORK_SOURCE_FILES} ${THREAD} main.cpp)
+target_link_libraries(RtypeServer Threads::Threads)
