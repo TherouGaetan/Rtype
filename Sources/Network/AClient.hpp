@@ -24,29 +24,29 @@ namespace Network {
          *
          *	@param "msg"  -> it's a recv message.
          */
-        virtual void recvMessage(const std::string &msg) = 0;
+        virtual void    recvMessage(const std::string &msg) = 0;
 
     public:
         /**
         *	"run" is a main server function,
         *	call this function in main while.
         */
-        virtual void run();
+        virtual void    run();
 
         /**
         *	"write" add message to buff write.
         *
         *	@param "buff"    -> message at send.
         */
-        virtual void write(const TSocket::Packet &buff);
+        virtual void    write(const TSocket::Packet &buff);
 
     private:
-        void checkReadWrite();
+        void            checkReadWrite();
 
-    private:
-        std::string mProtocol;
-        TSocket::ASocket *mSocket;
-        fd_set mFdRead;
-        fd_set mFdWrite;
+    protected:
+        std::string         mProtocol;
+        TSocket::ASocket    *mSocket;
+        fd_set              mFdRead;
+        fd_set              mFdWrite;
     };
 }

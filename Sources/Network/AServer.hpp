@@ -14,7 +14,7 @@
 namespace Network {
     class AServer {
     public:
-        AServer(int pPort = 2500, const std::string &pProtocol = "TCP");
+        explicit AServer(int pPort = 2500, const std::string &pProtocol = "TCP");
         ~AServer();
 
     public:
@@ -87,16 +87,17 @@ namespace Network {
         void checkClient(struct sockaddr_in *pSin);
 
     protected:
-        std::string mProtocol;
+        std::string                     mProtocol;
         /* "mSocket" contained all socket connect */
         std::list<std::pair<bool,
-                TSocket::ASocket *>> mSocket;
+                TSocket::ASocket *>>    mSocket;
 
         /* "mSockServ" is the server socket */
-        TSocket::ASocket *mSockServ;
-        fd_set mFdRead;
-        fd_set mFdWrite;
+        TSocket::ASocket                *mSockServ;
+        fd_set                          mFdRead;
+        fd_set                          mFdWrite;
 
-        std::vector<struct sockaddr_in *> mClientUdp;
+        std::vector<
+                struct sockaddr_in *>   mClientUdp;
     };
 }
