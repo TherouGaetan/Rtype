@@ -8,21 +8,21 @@
 namespace Network {
     AServer::AServer(int pPort, const std::string &pProtocol)
             : mProtocol(pProtocol) {
-        Logger::GetInstance().LogLine("=================================================================");
-        Logger::GetInstance().LogLine("||                         Creat server                        ||");
+        Logger::getInstance().logLine("=================================================================");
+        Logger::getInstance().logLine("||                         Creat server                        ||");
 
-        Logger::GetInstance().LogLine("||                            socket                           ||");
+        Logger::getInstance().logLine("||                            socket                           ||");
         if (pProtocol == "TCP")
             mSockServ = new TSocket::TcpSocket(&mFdRead, &mFdWrite, TSocket::Type::Server);
         else if (pProtocol == "UDP")
             mSockServ = new TSocket::UdpSocket(&mFdRead, &mFdWrite, TSocket::Type::Server);
 
-        Logger::GetInstance().LogLine("||                         Init client                         ||");
+        Logger::getInstance().logLine("||                         Init client                         ||");
 
         mSockServ->sPrepare(5000, "10.18.208.11", pPort);
 
-        Logger::GetInstance().LogLine("||                     Server initialize OK                    ||");
-        Logger::GetInstance().LogLine("=================================================================");
+        Logger::getInstance().logLine("||                     Server initialize OK                    ||");
+        Logger::getInstance().logLine("=================================================================");
     }
 
     AServer::~AServer()  {
@@ -50,7 +50,7 @@ namespace Network {
                 TSocket::Packet buf;
                 struct sockaddr_in *sin = new struct sockaddr_in;
                 mSockServ->sRecv(buf, sin);
-                Logger::GetInstance().LogLine("\t-\tRecv message UDP " + buf.getBuff());
+                Logger::getInstance().logLine("\t-\tRecv message UDP " + buf.getBuff());
                 checkClient(sin);
                 /*Adding*/ serverRead(mSockServ, buf);
             }
@@ -78,8 +78,8 @@ namespace Network {
         /*
         *	Prepare fd_read and fd_write.
         */
-        mSockServ->setFdZero(&mFdRead);
-        mSockServ->setFdZero(&mFdWrite);
+        Network::TSocket::ASocket::setFdZero(&mFdRead);
+        Network::TSocket::ASocket::setFdZero(&mFdWrite);
 
         /*
         *	Initialize all socket for read and write
@@ -123,7 +123,7 @@ namespace Network {
                         (*it).first = false;
                 }
                 decoUser(idSock);
-                Logger::GetInstance().LogLine(
+                Logger::getInstance().logLine(
                         "\t-\tUser with socket (" + std::to_string(idSock) + ") disconnect.");
             }
         }
@@ -141,7 +141,7 @@ namespace Network {
 
                 newUser(socket);
                 mSocket.emplace_back(true, socket);
-                Logger::GetInstance().LogLine("\t-\tNew connection.");
+                Logger::getInstance().logLine("\t-\tNew connection.");
             }
         }
     }

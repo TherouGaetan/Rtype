@@ -2,12 +2,12 @@
 
 namespace Network {
 	namespace TSocket {
-		TcpSocket::TcpSocket(fd_set *read, fd_set *write, const Type &type)
-				: ASocket(read, write, type) {
+		TcpSocket::TcpSocket(fd_set *pRead, fd_set *pWrite, const Type &pType)
+				: ASocket(pRead, pWrite, pType) {
 		}
 
-		TcpSocket::TcpSocket(fd_set *read, fd_set *write, const unsigned int socket)
-				: ASocket(read, write, socket) {
+		TcpSocket::TcpSocket(fd_set *pRead, fd_set *pWrite, const unsigned int pSocket)
+				: ASocket(pRead, pWrite, pSocket) {
 #ifdef _WIN32
             WSADATA  data;
             int result;
@@ -24,20 +24,20 @@ namespace Network {
 #endif // _WIN32
 		}
 
-		void TcpSocket::sPrepare(const unsigned int Millisecond, const std::string &ip, const unsigned int port) {
+		void TcpSocket::sPrepare(const unsigned int pMillisecond, const std::string &pIp, const unsigned int pPort) {
 			if (mType == Type::Client) {
-				sInit(Millisecond, ip, port);
+				sInit(pMillisecond, pIp, pPort);
 
-				Logger::GetInstance().LogLine("||               *-* Connect client                            ||");
+				Logger::getInstance().logLine("||               *-* Connect client                            ||");
 				sConnect();
 			} else {
-				sInit(Millisecond, ip, port);
+				sInit(pMillisecond, pIp, pPort);
 				sBind();
 				sListen(5);
 			}
 		}
 
-		void TcpSocket::sInit(const unsigned int Millisecond, const std::string &ip, const unsigned int port) throw() {
+		void TcpSocket::sInit(const unsigned int pMillisecond, const std::string &pIp, const unsigned int pPort) throw() {
 			struct protoent *proto;
 #ifdef _WIN32
             WSADATA  data;
@@ -49,13 +49,13 @@ namespace Network {
 #endif // _WIN32
 
 			mTime.tv_sec = 0;
-			mTime.tv_usec = Millisecond * 1000;
+			mTime.tv_usec = pMillisecond * 1000;
 
-			Logger::GetInstance().LogLine("||               *-* Protobyname                               ||");
+			Logger::getInstance().logLine("||               *-* Protobyname                               ||");
 			if ((proto = getprotobyname("TCP")) == NULL)
 				throw NetworkException("getprotobyname failed\n");
 
-			Logger::GetInstance().LogLine("||               *-* Create socket                             ||");
+			Logger::getInstance().logLine("||               *-* Create socket                             ||");
 			if ((mSocketId = socket(AF_INET, SOCK_STREAM, proto->p_proto)) < 0)
 				throw NetworkException("Creat socket failed\n");
 
@@ -63,28 +63,28 @@ namespace Network {
 				char opt;
 				struct hostent *host;
 
-				Logger::GetInstance().LogLine("||               *-* Set sockopt                               ||");
+				Logger::getInstance().logLine("||               *-* Set sockopt                               ||");
 				if (setsockopt(mSocketId, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(int)) == -1)
 					throw NetworkException("Setsockopt failed\n");
 
-				Logger::GetInstance().LogLine("||               *-* Gethostbyname                             ||");
+				Logger::getInstance().logLine("||               *-* Gethostbyname                             ||");
 				struct in_addr in;
-				inet_pton(AF_INET, ip.c_str(), &in);
+				inet_pton(AF_INET, pIp.c_str(), &in);
 				if ((host = gethostbyaddr((char *) &in, sizeof in, AF_INET)) == NULL)
 					throw NetworkException("Unknown host\n");
 
 				mAddr.sin_family = AF_INET;
-				mAddr.sin_port = htons(port);
+				mAddr.sin_port = htons(pPort);
 				mAddr.sin_addr = in;
 			} else {
 				mAddr.sin_family = AF_INET;
-				mAddr.sin_port = htons(port);
+				mAddr.sin_port = htons(pPort);
 				mAddr.sin_addr.s_addr = INADDR_ANY;
 			}
 		}
 
-		void TcpSocket::sListen(const unsigned int nb) throw() {
-			if (listen(mSocketId, nb) == -1)
+		void TcpSocket::sListen(const unsigned int pNb) throw() {
+			if (listen(mSocketId, pNb) == -1)
 				throw NetworkException("Socket listen failed\n");
 		}
 
@@ -105,14 +105,14 @@ namespace Network {
 				throw NetworkException("Socket connect failed " + std::to_string(value) + " \n");
 		}
 
-		int TcpSocket::sSend(const Packet &buff, struct sockaddr_in *addr) const
+		int TcpSocket::sSend(const Packet &pBuff, struct sockaddr_in *pAddr) const
         {
-            int header = htonl(buff.getBuff().length());
+            int header = htonl(pBuff.getBuff().length());
             send(mSocketId, (char *)&header, 4, 0);
-            return static_cast<int>(send(mSocketId, buff.getBuff().c_str(), buff.getBuff().length(), 0));
+            return static_cast<int>(send(mSocketId, pBuff.getBuff().c_str(), pBuff.getBuff().length(), 0));
         }
 
-        int TcpSocket::sRecv(Packet &buff, struct sockaddr_in *addr)
+        int TcpSocket::sRecv(Packet &pBuff, struct sockaddr_in *pAddr)
         {
             int size;
             recv(mSocketId, (char*)&size, 4, 0);
@@ -123,7 +123,7 @@ namespace Network {
                 char *buffrd = new char[sizeMsg + 1];
                 buffrd[sizeMsg] = 0;
                 int ret = static_cast<int>(recv(mSocketId, buffrd, sizeMsg, 0));
-                buff.append(std::string(buffrd));
+                pBuff.append(std::string(buffrd));
                 return ret;
             }
             return 0;

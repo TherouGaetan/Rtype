@@ -13,41 +13,41 @@ namespace Network {
         ~Logger() {};
 
     public:
-        /*
-        *	Get the unique instance of "Logger"
-        */
-        static Logger &GetInstance();
+        /**
+         *	Get the unique instance of "Logger"
+         */
+        static Logger &getInstance();
 
-        /*
-        *	close log file.
-        */
-        void Quit();
+        /**
+         *	close log file.
+         */
+        void quit();
 
-        /*
-        *	write line, in log file and in std out.
-        *
-        *	@param "msg" -> is a message at write
-        */
-        void LogLine(const std::string &msg);
+        /**
+         *	write line, in log file and in std out.
+         *
+         *	@param "msg" -> is a message at write
+         */
+        void logLine(const std::string &pMsg);
 
-        /*
-        *	write msg, in log file and in std out.
-        *
-        *	@param "msg" -> print msg on the end of file
-        */
-        void LogMsg(const std::string &msg);
+        /**
+         *	write msg, in log file and in std out.
+         *
+         *	@param "msg" -> print msg on the end of file
+         */
+        void logMsg(const std::string &pMsg);
 
-        /*
-        *	Initialize, create, or append log file.
-        */
+    private:
+        /**
+         *	Initialize, create, or append log file.
+         */
         void Init();
 
     private:
-        Logger(const Logger &log);
-
+        Logger(const Logger &pLog);
         Logger();
 
-    public:
+    private:
         static Logger mInstance;
         std::fstream mFstream;
     };

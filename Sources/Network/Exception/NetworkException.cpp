@@ -6,11 +6,20 @@
 
 namespace Network {
     NetworkException::NetworkException(const std::string &pMsg)
-    : runtime_error(pMsg), mMessage(pMsg) {
-        Logger::GetInstance().LogLine("NetworkException : " + mMessage + ".");
+            : runtime_error(pMsg), mMessage(pMsg) {
+        Logger::getInstance().logLine("NetworkException : " + mMessage + ".");
     }
 
     const char *NetworkException::what() const throw() {
         return mMessage.c_str();
+    }
+
+    NetworkException::NetworkException(const NetworkException &pException)
+            : runtime_error(pException.mMessage), mMessage(pException.mMessage) {
+    }
+
+    NetworkException &NetworkException::operator=(const NetworkException &pException) {
+        mMessage = pException.mMessage;
+        return *this;
     }
 }

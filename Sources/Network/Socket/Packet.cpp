@@ -3,40 +3,40 @@
 namespace Network {
 	namespace TSocket {
 		Packet::Packet() {
-			m_data = "";
+			mData = "";
 		}
 
 		Packet::~Packet() {
 		}
 
-		Packet Packet::operator<<(const std::string &msg) {
-			m_data += msg;
+		Packet Packet::operator<<(const std::string &pMsg) {
+			mData += pMsg;
 			return *this;
 		}
 
-		Packet Packet::append(const std::string &append) {
-			m_data += append;
+		Packet Packet::append(const std::string &pAppend) {
+			mData += pAppend;
 			return *this;
 		}
 
 		const std::string &Packet::getBuff() const {
-			return m_data;
+			return mData;
 		}
 
-		void Packet::str(const std::string &msg) {
-			m_data += msg;
+		void Packet::str(const std::string &pMsg) {
+			mData += pMsg;
 		}
 
 		const std::string &Packet::str() {
-			return m_data;
+			return mData;
 		}
 
 		void Packet::erase() {
-			this->m_data.erase();
+			this->mData.erase();
 		}
 
 		void Packet::clear() {
-			m_data = "";
+			mData = "";
 		}
 	}
 }
