@@ -15,67 +15,66 @@ namespace Network {
     class AServer {
     public:
         AServer(int pPort = 2500, const std::string &pProtocol = "TCP");
-
         ~AServer();
 
     public:
-        /*
-        *	"newUser" is call by the server, after recv new connection.
-        *
-        *	@param "pSock"		-> new socket create.
-        */
+        /**
+         *	"newUser" is call by the server, after recv new connection.
+         *
+         *	@param "pSock"		-> new socket create.
+         */
         virtual void newUser(TSocket::ASocket *pSock) = 0;
 
-        /*
-        *	"decoUser" is call by the server, after recv disconnection.
-        *
-        *	@param "pIdSock"		-> id socket destroy.
-        */
+        /**
+         *	"decoUser" is call by the server, after recv disconnection.
+         *
+         *	@param "pIdSock"		-> id socket destroy.
+         */
         virtual void decoUser(int pIdSock) = 0;
 
-        /*
-        *	"serverRead" is call by the server, after recv message.
-        *
-        *	@param "pSock"		-> socket to write.
-        *	@param "pBuff"		-> contain recv message to sock.
-        */
+        /**
+         *	"serverRead" is call by the server, after recv message.
+         *
+         *	@param "pSock"		-> socket to write.
+         *	@param "pBuff"		-> contain recv message to sock.
+         */
         virtual void serverRead(TSocket::ASocket *pSock, const TSocket::Packet &pBuff) = 0;
 
     public:
-        /*
-        *	"run" is a main server function,
-        *	call this function in main while.
-        */
+        /**
+         *	"run" is a main server function,
+         *	call this function in main while.
+         */
         virtual void run();
 
-        /*
-        *	"writeSocket" is call by AComServ for write in socket.
-        *
-        *	@param "pSock"  -> sock for write
-        *	@param "pWrite" -> buff at write
-        */
+        /**
+         *	"writeSocket" is call by AComServ for write in socket.
+         *
+         *	@param "pSock"  -> sock for write
+         *	@param "pWrite" -> buff at write
+         */
         virtual void writeSocket(TSocket::ASocket *pSock, const TSocket::Packet &pWrite);
 
     private:
-        /*
-        *	"initializeFd" prepare all socket connected for recv message.
-        */
+        /**
+         *	"initializeFd" prepare all socket connected for recv message.
+         */
         void initializeFd();
 
-        /*
-        *	"checkReadWrite" check all socket connected for read and write.
-        *
-        *	@param "pSock" -> Socket test
-        *
-        *	He call function "serverRead" or "decoUser" to AComServ.
-        */
+        /**
+         *	"checkReadWrite" check all socket connected for read and write.
+         *
+         *	@param "pSock" -> Socket test
+         *
+         *	He call function "serverRead" or "decoUser" to AComServ.
+         */
         void checkReadWrite(TSocket::ASocket *pSock);
 
-        /*
-        *	"recvNewConnection" check socket server, he create new socket.
-        *
-        *	He call function "newUser" to AComServ.
-        */
+        /**
+         *	"recvNewConnection" check socket server, he create new socket.
+         *
+         *	He call function "newUser" to AComServ.
+         */
         void recvNewConnection();
 
     public:

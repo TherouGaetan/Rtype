@@ -7,12 +7,12 @@ namespace Network {
         Init();
     }
 
-    Logger::Logger(const Logger &log) {
+    Logger::Logger(const Logger &pLog) {
         Init();
     }
 
 
-    Logger &Logger::GetInstance() {
+    Logger &Logger::getInstance() {
         return mInstance;
     }
 
@@ -37,7 +37,7 @@ namespace Network {
             std::cout << "done!" << std::endl;
     }
 
-    void Logger::Quit() {
+    void Logger::quit() {
         if (mFstream.is_open()) {
             std::cout << "Closing file... ";
             mFstream.close();
@@ -48,23 +48,23 @@ namespace Network {
         }
     }
 
-    void Logger::LogLine(const std::string &msg) {
+    void Logger::logLine(const std::string &pMsg) {
         if (mFstream.is_open()) {
-            mFstream << msg << std::endl;
+            mFstream << pMsg << std::endl;
             mFstream.flush();
-            std::cout << msg << std::endl;
+            std::cout << pMsg << std::endl;
         } else {
-            std::cerr << "Error while loging mesage: \"" << msg << "\"" << std::endl;
+            std::cerr << "Error while loging mesage: \"" << pMsg << "\"" << std::endl;
         }
     }
 
-    void Logger::LogMsg(const std::string &msg) {
+    void Logger::logMsg(const std::string &pMsg) {
         if (mFstream.is_open()) {
-            mFstream << msg;
+            mFstream << pMsg;
             mFstream.flush();
-            std::cout << msg;
+            std::cout << pMsg;
         } else {
-            std::cerr << "Error while loging mesage: " << msg << std::endl;
+            std::cerr << "Error while loging mesage: " << pMsg << std::endl;
         }
     }
 }

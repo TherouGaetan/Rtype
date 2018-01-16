@@ -9,10 +9,12 @@
 namespace Network {
     class NetworkException : public std::runtime_error {
     public:
-        NetworkException(const std::string &pMsg);
-
+        explicit NetworkException(const std::string &pMsg);
+        NetworkException(const NetworkException &pException);
         virtual ~NetworkException() throw() {}
 
+    public:
+        NetworkException &operator=(const NetworkException &pException);
         const char *what() const throw() override;
 
     private:

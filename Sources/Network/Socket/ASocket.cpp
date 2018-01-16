@@ -15,6 +15,10 @@ namespace Network {
                 : mFdRead(pRead), mFdWrite(pWrite), mSocketId(pSocket) {
         }
 
+        ASocket::~ASocket() {
+            sClose();
+        }
+
         void ASocket::setFdZero() {
             FD_ZERO(mFdRead);
             FD_ZERO(mFdWrite);
@@ -44,12 +48,12 @@ namespace Network {
 #endif
         }
 
-        int ASocket::sSelect() {
+        int ASocket::sSelect() throw() {
             int value = 0;
             if ((value = select(mSocketId + 1, mFdRead, mFdWrite, NULL, &mTime)) == -1) {
                 std::string msg("select: ");
-#ifdef _WIN32
-                throw new NetworkException("Socket select failed\n" + std::to_string(WSAGetLastError()));
+#ifdef TARGET_OS_WIN32
+                throw NetworkException("Socket select failed\n" + std::to_string(WSAGetLastError()));
 #endif
             }
             return value;
@@ -57,7 +61,7 @@ namespace Network {
 
         void ASocket::sBind() const {
             if (bind(mSocketId, (struct sockaddr *) &mAddr, sizeof(struct sockaddr_in)) == -1)
-                throw new NetworkException("Sockect binding failed\n");
+                throw NetworkException("Sockect binding failed\n");
         }
     }
 }
