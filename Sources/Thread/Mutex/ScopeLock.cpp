@@ -1,8 +1,8 @@
 #include "ScopeLock.hpp"
 
 namespace Thread {
-    ScopeLock::ScopeLock(IMutex *mutex) :
-        mMutex(mutex)
+    ScopeLock::ScopeLock(IMutex *pMutex) :
+        mMutex(pMutex)
     {
         mMutex->lock();
     }

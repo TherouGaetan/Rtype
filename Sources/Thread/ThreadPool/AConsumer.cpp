@@ -1,16 +1,23 @@
 #include "AConsumer.h"
+#include "../ThreadFactory.hpp"
 
 namespace Thread {
 	
-	AConsumer::AConsumer(ICondVar * cond_queue)
+	AConsumer::AConsumer()
+            : mRun(true)
 	{
-		_run = true;
-		_cond_queue = cond_queue;
+		mCondQueue = ThreadFactory::getInstance().makeCondVar();
 	}
+
+    AConsumer::AConsumer(ICondVar *pCondvar)
+            : mRun(true), mCondQueue(pCondvar)
+    {
+
+    }
 
 	void AConsumer::stop()
 	{
-		_run = false;
+		mRun = false;
 	}
 
 }

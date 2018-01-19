@@ -7,14 +7,7 @@
 
 #include "DoTheJob.h"
 #include "../Thread/IThread.h"
-/*#ifdef __linux__
-#include "UnixThread.h"
-#include "UnixCondVar.h"
-#else*/
-#include "../Thread/StdThread.h"
-#include "../Condvar/StdCondVar.h"
-//#endif // !__linux__
-
+#include "../Condvar/ICondVar.h"
 
 namespace Thread {
 
@@ -22,16 +15,16 @@ namespace Thread {
 	class ThreadPool
 	{
 	public:
-		ThreadPool(unsigned char nbThread);
-		~ThreadPool();
+		explicit ThreadPool(unsigned int pNbThread);
+		virtual ~ThreadPool();
 
 	public:
-		bool pushInQueue(T *elem);
+		unsigned long pushInQueue(T *pElem);
 
 	private:
-		std::list<T*>   _queue;
-		std::vector<std::pair<DoTheJob<T>*, IThread *>> _threads;
-		ICondVar		*_cond_queue;
+		std::list<T*>   mQueue;
+        ICondVar		*mCondQueue;
+		std::vector<std::pair<U*, IThread *>> mThreads;
 	};
 
 }

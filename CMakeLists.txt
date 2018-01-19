@@ -25,11 +25,13 @@ set(THREAD
         Sources/Thread/Exception/ThreadException.hpp
         Sources/Thread/Thread/StdThread.cpp
         Sources/Thread/ThreadFactory.cpp
-        Sources/Thread/ThreadFactory.hpp)
+        Sources/Thread/ThreadFactory.hpp
+        Sources/Thread/ThreadPool/AConsumer.cpp
+        Sources/Thread/ThreadPool/DoTheJob.cpp
+        Sources/Thread/ThreadPool/ThreadPool.cpp)
 
 set(SERVER
-        Sources/Server/Server.cpp
-        Sources/Server/Server.hpp)
+        Sources/Server/Server.cpp)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)

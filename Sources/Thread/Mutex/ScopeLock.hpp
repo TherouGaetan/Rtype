@@ -8,7 +8,7 @@ namespace Thread {
     class ScopeLock {
 
      public:
-        explicit ScopeLock(IMutex *mutex);
+        explicit ScopeLock(IMutex *pMutex);
         ~ScopeLock();
 
     private:

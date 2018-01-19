@@ -4,20 +4,16 @@
 #include "../Mutex/IMutex.h"
 
 namespace Thread {
-class IMutex;
-} /* End of namespace Thread */
 
-namespace Thread {
+    class ICondVar {
+    public:
+        virtual ~ICondVar() {}
 
-class ICondVar {
-public:
-    virtual ~ICondVar() {}
-
- public:
-    virtual void signal()  = 0;
-    virtual void wait()  = 0;
-    virtual int timedwait(int time) throw() = 0;
-};
+     public:
+        virtual void signal()  = 0;
+        virtual void wait()  = 0;
+        virtual int timedwait(int pTime) throw() = 0;
+    };
 
 } /* End of namespace Thread */
 

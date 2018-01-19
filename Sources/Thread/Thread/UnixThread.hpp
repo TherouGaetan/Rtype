@@ -10,8 +10,8 @@ namespace Thread {
     {
      public:
         template <class T, class ...Args>
-        explicit UnixThread(T &&func, Args &&...params) {
-            pthread_create(&_thread, NULL, func, params...);
+        explicit UnixThread(T &&pFunc, Args &&...pParams) {
+            pthread_create(&mThread, NULL, pFunc, pParams...);
         };
         ~UnixThread() {};
 
@@ -21,7 +21,7 @@ namespace Thread {
         int getIdThread() const override;
 
      private:
-        pthread_t _thread;
+        pthread_t mThread;
     };
 
 } /* End of namespace Thread */

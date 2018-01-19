@@ -3,6 +3,11 @@
 
 namespace Thread {
 
+    UnixCondVar::UnixCondVar() {
+        mMutex = new UnixMutex();
+        pthread_cond_init(&mCondvar, NULL);
+    }
+
     UnixCondVar::UnixCondVar(UnixMutex *mutex) :
         mMutex(mutex)
     {
