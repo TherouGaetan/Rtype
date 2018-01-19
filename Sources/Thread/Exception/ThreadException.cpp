@@ -12,6 +12,7 @@ namespace Thread {
     }
 
     const char *ThreadException::what() const throw() {
+
         return mMessage.c_str();
     }
 

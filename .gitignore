@@ -3,6 +3,8 @@
 
 # File Clion
 .idea
+.DS_Store
+Diagramme/.DS_Store
 
 # Compiled Object files
 *.slo
@@ -29,7 +31,25 @@
 *.a
 *.lib
 
+# Temp file Diagramme
+Diagramme/*.bak*
+Diagramme/.Rtype*
+
 # Executables
 *.exe
 *.out
 *.app
+RtypeServer
+RtypeClient
+
+# Cmake
+CMakeFiles/*
+CMakeCache.txt
+Makefile
+Rtype.cbp
+cmake-build-debug/*
+cmake_install.cmake
+cmake_modules/*
+
+# Log files
+log*
