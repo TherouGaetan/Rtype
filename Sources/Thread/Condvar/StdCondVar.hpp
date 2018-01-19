@@ -9,21 +9,22 @@
 
 namespace Thread {
 
-class StdCondVar: public ICondVar
-{
- public:
-    StdCondVar(StdMutex *pMutex);
-    ~StdCondVar();
+    class StdCondVar: public ICondVar
+    {
+    public:
+        StdCondVar();
+        explicit StdCondVar(StdMutex *pMutex);
+        virtual ~StdCondVar();
 
-public:
-    void signal() override;
-    void wait() override;
-    int timedwait(int time) throw() override;
+    public:
+        void signal() override;
+        void wait() override;
+        int timedwait(int pTime) throw() override;
 
- public:
-    StdMutex                *mMutex;
-    std::condition_variable mCondvar;
-};
+     public:
+        StdMutex                *mMutex;
+        std::condition_variable mCondvar;
+    };
 
 } /* End of namespace Thread */
 

@@ -7,15 +7,16 @@ namespace Thread {
 
 	class AConsumer {
 	public:
-		AConsumer(ICondVar *cond_queue);
+		AConsumer();
+		AConsumer(ICondVar *pCondvar);
 
 	public:
 		void			stop();
 		virtual void	run() = 0;
 
 	protected:
-		bool		_run;
-		ICondVar	*_cond_queue;
+		bool		mRun;
+		ICondVar	*mCondQueue;
 	};
 
 } /* End of namespace Thread */

@@ -24,7 +24,7 @@ namespace Thread {
         virtual ~ThreadFactory() {};
 
     public:
-        ThreadFactory   &getInstance() const;
+        static ThreadFactory   &getInstance();
 
     public:
         IMutex      *makeMutex() const;

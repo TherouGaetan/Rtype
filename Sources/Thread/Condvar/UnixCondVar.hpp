@@ -9,21 +9,24 @@
 #include "../Mutex/UnixMutex.hpp"
 
 namespace Thread {
+
     class UnixCondVar: public ICondVar
     {
     public:
+        UnixCondVar();
         explicit UnixCondVar(UnixMutex *mutex);
         virtual ~UnixCondVar();
 
     public:
         void signal() override;
         void wait() override;
-        int timedwait(int time) throw() override ;
+        int timedwait(int pTime) throw() override ;
 
      public:
         UnixMutex       *mMutex;
         pthread_cond_t  mCondvar;
     };
+
 }
 
 #endif // Thread_UnixCondVar_h

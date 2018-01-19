@@ -10,15 +10,15 @@ namespace Thread {
 	{
 	public:
 		template <class T, class ...Args>
-		explicit StdThread(T &&func, Args &&...params) :
-			mThread(func, params...) {};
+		explicit StdThread(T &&pFunc, Args &&...pParams) :
+			mThread(pFunc, pParams...) {};
 
 		virtual ~StdThread() {};
 
 	public:
-		void join() override;
-		void kill() override;
-		int getIdThread() const override;
+		void	join() override;
+		void	kill() override;
+		int 	getIdThread() const override;
 
 	 private:
 		std::thread mThread;

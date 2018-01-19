@@ -1,57 +1,49 @@
 #include "ThreadPool.hh"
+#include "../ThreadFactory.hpp"
 
 namespace Thread 
 {
-
 	template<class T, class U>
-	ThreadPool<T, U>::ThreadPool(unsigned char nbThread)
+	ThreadPool<T, U>::ThreadPool(unsigned int pNbThread)
 	{
-	  /*#ifdef __linux__
-		_cond_queue = new UnixCondVar();
-		#else*/
-		_cond_queue = new StdCondVar();
-		//#endif // __linux__
+		mCondQueue = ThreadFactory::getInstance().makeCondVar();
 
-		for (unsigned char i = 0; i < nbThread; i++)
+		for (unsigned char i = 0; i < pNbThread; i++)
 		{
-			U *job = new U(_cond_queue, &_queue);
+			U *job = new U(mCondQueue, &mQueue);
 
-			/*#ifdef __linux__
-			IThread *thread = new UnixThread(&DoTheJob::run, job, &_queue);
-			#else*/
-			IThread *thread = new StdThread(&DoTheJob::run, job, &_queue);
-			//#endif // __linux__
+			IThread *thread = ThreadFactory::getInstance().makeThread(&DoTheJob<T>::run, job, &mQueue);
 
-			std::pair<job, IThread *> pair(job, thread);
-			_threads.push_back(pair);
+			std::pair<U, IThread *> pair(job, thread);
+			mThreads.push_back(pair);
 		}
 	}
 
 	template <class T, class U>
 	ThreadPool<T, U>::~ThreadPool()
 	{
-		for (unsigned int i = 0; i < _threads.size(); i++)
+		for (unsigned int i = 0; i < mThreads.size(); i++)
 		{
-			_threads.at(i).first->stop();
-			_threads.at(i).second->join();
+			mThreads.at(i).first->stop();
+			mThreads.at(i).second->join();
 		}
-		for (unsigned int i = 0; i < _threads.size(); i++) {
-			_threads.at(i).second->kill();
-			delete _threads.at(i).first;
-			delete _threads.at(i).second;
+		for (unsigned int i = 0; i < mThreads.size(); i++) {
+			mThreads.at(i).second->kill();
+			delete mThreads.at(i).first;
+			delete mThreads.at(i).second;
 		}
 		
-		_threads.erase(_threads.begin(), _threads.end());
+		mThreads.erase(mThreads.begin(), mThreads.end());
 
-		delete _cond_queue;
+		delete mCondQueue;
 	}
 
 	template <class T, class U>
-	bool ThreadPool<T, U>::pushInQueue(T *elem)
+	unsigned long ThreadPool<T, U>::pushInQueue(T *pElem)
 	{
-		_queue.push_back(elem);
-		_cond_queue->signal();
-		return _queue.size();
+		mQueue.push_back(pElem);
+		mCondQueue->signal();
+		return mQueue.size();
 	}
 
 }

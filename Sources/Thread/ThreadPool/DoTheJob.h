@@ -5,18 +5,22 @@
 #include "../Condvar/ICondVar.h"
 #include "AConsumer.h"
 
-template <class T>
-class DoTheJob : public Thread::AConsumer
-{
-public:
-	DoTheJob(Thread::ICondVar *cond_queue, std::list<T*> *queue);
-	~DoTheJob();
+namespace Thread {
 
-public:
-	void	run() override;
+	template<class T>
+	class DoTheJob : public AConsumer {
+	public:
+		DoTheJob(Thread::ICondVar *pCondQueue, std::list<T *> *pQueue);
 
-public:
-	std::list<T*>	*_queue;
-};
+		~DoTheJob();
+
+	public:
+		void run() override;
+
+	public:
+		std::list<T *> *mQueue;
+	};
+
+}
 
 #endif // !Thread_DoTheJob_h_

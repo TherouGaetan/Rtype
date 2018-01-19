@@ -5,12 +5,12 @@ namespace Thread {
 
     void UnixThread::join()
     {
-        pthread_join(_thread, NULL);
+        pthread_join(mThread, NULL);
     }
 
     void UnixThread::kill()
     {
-        pthread_kill(_thread, SIGINT);
+        pthread_kill(mThread, SIGINT);
     }
 
     int UnixThread::getIdThread() const

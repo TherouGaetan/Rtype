@@ -19,7 +19,7 @@ namespace Thread {
 
     }
 
-    ThreadFactory &ThreadFactory::getInstance() const {
+    ThreadFactory &ThreadFactory::getInstance() {
         return mInstance;
     }
 
