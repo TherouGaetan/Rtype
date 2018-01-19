@@ -7,14 +7,7 @@
 
 #include "DoTheJob.h"
 #include "../Thread/IThread.h"
-
-#ifdef __linux__
-#include "UnixThread.h"
-#include "UnixCondVar.h"
-#else
-#include "../Thread/StdThread.hpp"
-#include "../Condvar/StdCondVar.hpp"
-#endif
+#include "../Condvar/ICondVar.h"
 
 namespace Thread {
 
