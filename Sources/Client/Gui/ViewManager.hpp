@@ -21,7 +21,11 @@ namespace View {
         static ViewManager  &getInstance();
         void                changeView();
         void                setActiveView(const std::string &pName);
+        AView               *getActiveView() const;
         bool                needChange() const;
+
+    public:
+        void        manageEvent(sf::Event &pEvent, sf::RenderWindow &pWin);
 
     private:
         explicit ViewManager();

@@ -4,10 +4,14 @@
 
 #include "ViewManager.hpp"
 
-
 namespace View {
 
     ViewManager ViewManager::mInstance = ViewManager();
+
+    ViewManager::ViewManager() {
+        mViewFutur = nullptr;
+        mViewActive = nullptr;
+    }
 
     ViewManager::~ViewManager() {
     }
@@ -35,8 +39,11 @@ namespace View {
         return mViewFutur != nullptr;
     }
 
-    ViewManager::ViewManager() {
-        mViewFutur = nullptr;
-        mViewActive = nullptr;
+    void ViewManager::manageEvent(sf::Event &pEvent, sf::RenderWindow &pWin) {
+        mViewActive->manageEvent(pEvent, pWin);
+    }
+
+    AView *ViewManager::getActiveView() const {
+        return mViewActive;
     }
 }

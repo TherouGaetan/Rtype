@@ -63,7 +63,7 @@ target_link_libraries(${EXECUTABLE_SERVER_NAME} Threads::Threads)
 
 # Make executable client
 set(EXECUTABLE_CLIENT_NAME "RtypeClient")
-add_executable(${EXECUTABLE_CLIENT_NAME} ${CLIENT} ${VIEW} ${NETWORK_SOURCE_FILES} ${THREAD} main.cpp)
+add_executable(${EXECUTABLE_CLIENT_NAME} ${CLIENT} ${VIEW} ${NETWORK_SOURCE_FILES} ${THREAD} Sources/Client/main.cpp)
 target_link_libraries(${EXECUTABLE_CLIENT_NAME} Threads::Threads)
 
 

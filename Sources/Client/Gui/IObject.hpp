@@ -8,10 +8,11 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/Drawable.hpp>
 
 namespace View {
 
-    class IObject {
+    class IObject : public sf::Drawable {
     public:
         virtual ~IObject() {};
 
