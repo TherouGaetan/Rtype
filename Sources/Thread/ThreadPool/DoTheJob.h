@@ -11,13 +11,12 @@ namespace Thread {
 	class DoTheJob : public AConsumer {
 	public:
 		DoTheJob(Thread::ICondVar *pCondQueue, std::list<T *> *pQueue);
-
 		~DoTheJob();
 
 	public:
 		void run() override;
 
-	public:
+	private:
 		std::list<T *> *mQueue;
 	};
 
