@@ -3,6 +3,9 @@ project(Rtype)
 
 set(CMAKE_CXX_STANDARD 14)
 
+
+include_directories(Sources)
+
 # Global sources network
 set(NETWORK_SOURCE_FILES
         Sources/Network/Socket/ASocket.cpp
@@ -37,8 +40,17 @@ set(SERVER
         Sources/Server/Server.cpp)
 
 # Sources Client
+set(VIEW
+        Sources/Client/Gui/ViewFactory.cpp
+        Sources/Client/Gui/ViewManager.cpp
+        Sources/Client/Gui/View/AView.cpp
+        Sources/Client/Gui/Widget/AWidget.cpp
+        Sources/Client/Gui/Scene/AuthenticationScene.cpp)
+
 set(CLIENT
-        Sources/Client/Client.cpp)
+        Sources/Client/Client.cpp
+        Sources/Client/Exception/Exception.cpp
+        Sources/Client/Exception/GuiException.cpp)
 
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
@@ -51,7 +63,7 @@ target_link_libraries(${EXECUTABLE_SERVER_NAME} Threads::Threads)
 
 # Make executable client
 set(EXECUTABLE_CLIENT_NAME "RtypeClient")
-add_executable(${EXECUTABLE_CLIENT_NAME} ${CLIENT} ${NETWORK_SOURCE_FILES} ${THREAD} main.cpp)
+add_executable(${EXECUTABLE_CLIENT_NAME} ${CLIENT} ${VIEW} ${NETWORK_SOURCE_FILES} ${THREAD} main.cpp)
 target_link_libraries(${EXECUTABLE_CLIENT_NAME} Threads::Threads)
 
 
