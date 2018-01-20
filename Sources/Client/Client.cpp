@@ -13,10 +13,11 @@ namespace RType {
     {
         mWindow.setFramerateLimit(60);
         ::View::ViewManager::getInstance().setActiveView("Authentication");
+        initializeRessource();
     }
 
     void Client::initializeRessource() {
-
+        ::View::RessourcesManager::getInstance();
     }
 
     void Client::runGame() {

@@ -50,7 +50,8 @@ set(VIEW
 set(CLIENT
         Sources/Client/Client.cpp
         Sources/Client/Exception/Exception.cpp
-        Sources/Client/Exception/GuiException.cpp)
+        Sources/Client/Exception/GuiException.cpp
+        Sources/Client/Gui/RessourcesManager.cpp)
 
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)

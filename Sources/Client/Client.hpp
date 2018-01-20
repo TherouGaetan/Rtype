@@ -8,6 +8,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include "RessourcesManager.hpp"
+
 namespace RType {
 
     class Client {
