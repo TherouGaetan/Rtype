@@ -19,11 +19,11 @@ namespace View {
         virtual ~ViewFactory() {};
 
     public:
-        AView   *makeView(const std::string &pNameView);
+        Widget::AView   *makeView(const std::string &pNameView);
 
     private:
-        typedef AView *(ViewFactory::*createView)();
-        AView   *makeAuthenticate();
+        typedef Widget::AView *(ViewFactory::*createView)();
+        Widget::AView   *makeAuthenticate();
 
     private:
         std::map<std::string, createView> mViewsList;

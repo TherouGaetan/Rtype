@@ -12,8 +12,8 @@ namespace View {
     class AWidget: public IObject {
     public:
         AWidget();
-        AWidget(const sf::Vector2u &pDimension);
-        AWidget(const sf::Vector2u &pDimension, const sf::Vector2u &pPosition);
+        AWidget(const sf::Vector2f &pDimension);
+        AWidget(const sf::Vector2f &pDimension, const sf::Vector2f &pPosition);
         virtual ~AWidget();
 
     public:
@@ -22,19 +22,19 @@ namespace View {
         void        manageEvent(sf::Event &pEvent, sf::RenderWindow &pWin) override = 0;
 
     public:
-        const sf::Vector2u  &getDimension() const;
-        const sf::Vector2u  &getPosition() const;
+        const sf::Vector2f  &getDimension() const;
+        const sf::Vector2f  &getPosition() const;
         const sf::Color     &getBackgroundColor() const;
 
     public:
-        void    setDimension(const sf::Vector2u &pDimension);
-        void    setDimension(unsigned int pWidth, unsigned int pHeight);
-        void    setPosition(const sf::Vector2u &pPosition);
-        void    setBackgroundColor(const sf::Color &pColor);
+        virtual void    setDimension(const sf::Vector2f &pDimension);
+        virtual void    setDimension(unsigned int pWidth, unsigned int pHeight);
+        virtual void    setPosition(const sf::Vector2f &pPosition);
+        virtual void    setBackgroundColor(const sf::Color &pColor);
 
     protected:
-        sf::Vector2u    mDimension;
-        sf::Vector2u    mPosition;
+        sf::Vector2f    mDimension;
+        sf::Vector2f    mPosition;
         sf::Color       mBackgroundColor;
     };
 

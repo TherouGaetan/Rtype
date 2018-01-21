@@ -9,7 +9,7 @@
 
 namespace View {
 
-    class AuthenticationScene : public AView{
+    class AuthenticationScene : public Widget::AView {
     public:
         explicit AuthenticationScene(unsigned int pWidth, unsigned int pHeight);
         virtual ~AuthenticationScene();

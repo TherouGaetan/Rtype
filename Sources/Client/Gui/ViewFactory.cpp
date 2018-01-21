@@ -10,13 +10,13 @@ namespace View {
         mViewsList["Authentication"] = &ViewFactory::makeAuthenticate;
     }
 
-    AView *ViewFactory::makeView(const std::string &pNameView) {
+    Widget::AView *ViewFactory::makeView(const std::string &pNameView) {
         if (mViewsList.find(pNameView) != mViewsList.end())
             return (this->*mViewsList[pNameView])();
         return nullptr;
     }
 
-    AView *ViewFactory::makeAuthenticate() {
+    Widget::AView *ViewFactory::makeAuthenticate() {
         return new AuthenticationScene(1920, 1080);
     }
 }

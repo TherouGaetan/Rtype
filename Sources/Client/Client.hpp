@@ -8,7 +8,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
-#include "RessourcesManager.hpp"
+#include "Gui/RessourcesManager.hpp"
 
 namespace RType {
 

@@ -10,35 +10,40 @@
 #include "Network/Socket/Packet.hpp"
 
 namespace View {
+    namespace Widget {
 
-    class AView: public AWidget {
-    public:
-        explicit AView();
-        virtual ~AView();
+        class AView : public AWidget {
+        public:
+            explicit AView();
+            AView(const sf::Vector2f &pDimension);
+            virtual ~AView();
 
-    public:
-        unsigned int    getAntiAliasing() const;
+        public:
+            unsigned int getAntiAliasing() const;
 
-    public:
-        void            setAntiAliasing(unsigned int pAntiAliasing);
+        public:
+            void setAntiAliasing(unsigned int pAntiAliasing);
 
-    protected:
-        virtual void    initView() = 0;
+        protected:
+            virtual void initView() = 0;
 
-    public:
-        virtual void    notifyRecievedNetwork(const Network::TSocket::Packet &pPackage);
+        public:
+            virtual void notifyRecievedNetwork(const Network::TSocket::Packet &pPackage);
 
-    public:
-        void        draw(sf::RenderTarget &pTarget, sf::RenderStates pStates) const override = 0;
-        void        update(sf::Event &pEvent, sf::RenderWindow &pWin, sf::Time &pTimeSinceLastFrame) override = 0;
-        void        manageEvent(sf::Event &pEvent, sf::RenderWindow &pWin) override = 0;
+        public:
+            void draw(sf::RenderTarget &pTarget, sf::RenderStates pStates) const override = 0;
 
-    protected:
-        unsigned int        mAntiAliasing;
-        std::multimap<unsigned int,
-                AWidget *>  mWidget;
-    };
+            void update(sf::Event &pEvent, sf::RenderWindow &pWin, sf::Time &pTimeSinceLastFrame) override = 0;
 
+            void manageEvent(sf::Event &pEvent, sf::RenderWindow &pWin) override = 0;
+
+        protected:
+            unsigned int mAntiAliasing;
+            std::multimap<unsigned int,
+                    AWidget *> mWidget;
+        };
+
+    }
 }
 
 

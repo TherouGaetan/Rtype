@@ -7,17 +7,17 @@
 namespace View {
 
     AWidget::AWidget()
-            : AWidget(sf::Vector2u(100, 10))
+            : AWidget(sf::Vector2f(100, 100))
     {
     }
 
-    AWidget::AWidget(const sf::Vector2u &pDimension)
-            : AWidget(pDimension, sf::Vector2u(0, 0))
+    AWidget::AWidget(const sf::Vector2f &pDimension)
+            : AWidget(pDimension, sf::Vector2f(0, 0))
     {
 
     }
 
-    AWidget::AWidget(const sf::Vector2u &pDimension, const sf::Vector2u &pPosition)
+    AWidget::AWidget(const sf::Vector2f &pDimension, const sf::Vector2f &pPosition)
             : mDimension(pDimension), mPosition(pPosition), mBackgroundColor(sf::Color::Black)
     {
 
@@ -27,11 +27,11 @@ namespace View {
 
     }
 
-    const sf::Vector2u &AWidget::getDimension() const {
+    const sf::Vector2f &AWidget::getDimension() const {
         return mDimension;
     }
 
-    const sf::Vector2u &AWidget::getPosition() const {
+    const sf::Vector2f &AWidget::getPosition() const {
         return mPosition;
     }
 
@@ -39,15 +39,15 @@ namespace View {
         return mBackgroundColor;
     }
 
-    void AWidget::setDimension(const sf::Vector2u &pDimension) {
+    void AWidget::setDimension(const sf::Vector2f &pDimension) {
         mDimension = pDimension;
     }
 
     void AWidget::setDimension(unsigned int pWidth, unsigned int pHeight) {
-        mDimension = sf::Vector2u(pWidth, pHeight);
+        mDimension = sf::Vector2f(pWidth, pHeight);
     }
 
-    void AWidget::setPosition(const sf::Vector2u &pPosition) {
+    void AWidget::setPosition(const sf::Vector2f &pPosition) {
         mPosition = pPosition;
     }
 

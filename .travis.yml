@@ -6,4 +6,4 @@ before_install:
   - sudo apt-get install libpthread-stubs0-dev
 script:
   - cmake .
-  - make && ./RtypeServer
+  - make

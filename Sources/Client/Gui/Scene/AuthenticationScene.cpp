@@ -3,11 +3,16 @@
 //
 
 #include "AuthenticationScene.hpp"
+#include "Client/Gui/RessourcesManager.hpp"
+#include "Client/Gui/Widget/Picture/Picture.hpp"
+#include "Client/Gui/Widget/Bouton/PushButton.hpp"
 
 namespace View {
 
-    AuthenticationScene::AuthenticationScene(unsigned int pWidth, unsigned int pHeight) {
-
+    AuthenticationScene::AuthenticationScene(unsigned int pWidth, unsigned int pHeight)
+            : Widget::AView(sf::Vector2f(pWidth, pHeight))
+    {
+        initView();
     }
 
     AuthenticationScene::~AuthenticationScene() {
@@ -15,7 +20,10 @@ namespace View {
     }
 
     void AuthenticationScene::initView() {
-
+        mWidget.insert(std::pair<unsigned int, AWidget *>(0, new Widget::Picture(
+                RessourcesManager::getInstance()->getTexture("Connexion"), mDimension)));
+        mWidget.insert(std::pair<unsigned int, AWidget *>(1, new Widget::PushButton("Quitter", sf::Vector2f(125, 25),
+        RessourcesManager::getInstance()->getFont("Capture_it"))));
     }
 
     void AuthenticationScene::draw(sf::RenderTarget &pTarget, sf::RenderStates pStates) const {

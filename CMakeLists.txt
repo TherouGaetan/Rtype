@@ -45,7 +45,13 @@ set(VIEW
         Sources/Client/Gui/ViewManager.cpp
         Sources/Client/Gui/View/AView.cpp
         Sources/Client/Gui/Widget/AWidget.cpp
-        Sources/Client/Gui/Scene/AuthenticationScene.cpp)
+        Sources/Client/Gui/Scene/AuthenticationScene.cpp
+        Sources/Client/Gui/Widget/APicture.cpp
+        Sources/Client/Gui/Widget/Picture/Picture.cpp
+        Sources/Client/Gui/Widget/AButton.cpp
+        Sources/Client/Gui/Widget/AText.cpp
+        Sources/Client/Gui/Widget/Text/Label.cpp
+        Sources/Client/Gui/Widget/Bouton/PushButton.cpp)
 
 set(CLIENT
         Sources/Client/Client.cpp

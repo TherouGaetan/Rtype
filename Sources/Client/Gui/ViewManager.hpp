@@ -21,7 +21,7 @@ namespace View {
         static ViewManager  &getInstance();
         void                changeView();
         void                setActiveView(const std::string &pName);
-        AView               *getActiveView() const;
+        Widget::AView       *getActiveView() const;
         bool                needChange() const;
 
     public:
@@ -33,9 +33,9 @@ namespace View {
     private:
         static ViewManager  mInstance;
         ViewFactory         mFactory;
-        std::map<std::string, AView *>  mViews;
-        AView               *mViewActive;
-        AView               *mViewFutur;
+        std::map<std::string, Widget::AView *>  mViews;
+        Widget::AView       *mViewActive;
+        Widget::AView       *mViewFutur;
     };
 
 }

@@ -5,24 +5,35 @@
 #include "AView.hpp"
 
 namespace View {
+    namespace Widget {
 
-    AView::AView() {
+        AView::AView()
+                : AWidget()
+        {
 
-    }
+        }
 
-    AView::~AView() {
+        AView::AView(const sf::Vector2f &pDimension)
+                : AWidget(pDimension)
+        {
 
-    }
+        }
 
-    void AView::notifyRecievedNetwork(const Network::TSocket::Packet &pPackage) {
+        AView::~AView() {
 
-    }
+        }
 
-    unsigned int AView::getAntiAliasing() const {
-        return mAntiAliasing;
-    }
+        void AView::notifyRecievedNetwork(const Network::TSocket::Packet &pPackage) {
 
-    void AView::setAntiAliasing(unsigned int pAntiAliasing) {
-        mAntiAliasing = pAntiAliasing;
+        }
+
+        unsigned int AView::getAntiAliasing() const {
+            return mAntiAliasing;
+        }
+
+        void AView::setAntiAliasing(unsigned int pAntiAliasing) {
+            mAntiAliasing = pAntiAliasing;
+        }
+
     }
 }

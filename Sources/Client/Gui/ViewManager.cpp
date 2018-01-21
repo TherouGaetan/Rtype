@@ -27,7 +27,7 @@ namespace View {
 
     void ViewManager::setActiveView(const std::string &pName) {
         if (mViews.find(pName) == mViews.end()) {
-            AView *view = mFactory.makeView(pName);
+            Widget::AView *view = mFactory.makeView(pName);
             if (view == nullptr)
                 throw RType::View::GuiException("View not found");
             mViews[pName] = view;
@@ -43,7 +43,7 @@ namespace View {
         mViewActive->manageEvent(pEvent, pWin);
     }
 
-    AView *ViewManager::getActiveView() const {
+    Widget::AView *ViewManager::getActiveView() const {
         return mViewActive;
     }
 }
